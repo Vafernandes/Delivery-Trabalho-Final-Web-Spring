@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/produto/formulario").hasRole("ADMIN")
 		.antMatchers("/produto/listar").permitAll()
 		.antMatchers("/produto/cardapio").permitAll()
+		.antMatchers("/produto/comprar").hasRole("USER")
 		 
 		.anyRequest().authenticated()
 		

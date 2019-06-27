@@ -1,83 +1,68 @@
 package com.delivery.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
 @Entity
 public class Pedido {
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue (strategy = GenerationType.AUTO)
+	private Long codigoPedido;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Produto> produtos;
+	private Long codigoPessoa;
+	private float valorTotal;
+	private String enderecoPedido;
+	private String pratosPedido;
 	
-	private boolean concluido;
-	
-	private String endereco;
-	
-	public String getEndereco() {
-		return endereco;
+	public String getPratosPedido() {
+		return pratosPedido;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setPratosPedido(String pratosPedido) {
+		this.pratosPedido = pratosPedido;
 	}
 
-	public Pedido() {
-		produtos = new ArrayList<Produto>();
-		this.concluido = false;
+	public Pedido() {}
+	
+	public String getEnderecoPedido() {
+		return enderecoPedido;
+	}
+
+
+	public void setEnderecoPedido(String enderecoPedido) {
+		this.enderecoPedido = enderecoPedido;
+	}
+
+
+	public Long getCodigoPedido() {
+		return codigoPedido;
+	}
+
+
+	public void setCodigoPedido(Long codigoPedido) {
+		this.codigoPedido = codigoPedido;
+	}
+
+
+	public Long getCodigoPessoa() {
+		return codigoPessoa;
+	}
+
+
+	public void setCodigoCliente(Long codigoPessoa) {
+		this.codigoPessoa = codigoPessoa;
+	}
+
+	public float getValorTotal() {
+		return valorTotal;
+	}
+
+
+	public void setValorTotal(float valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 	
-	public void removerProduto(Long id) {
-		for(Produto produto: produtos)
-			if(produto.getIdProduto() == id) {
-				produtos.remove(produto);
-				break;
-			}
-	}
 	
-	public float calcularValor() {
-		float valor = 0f;
-		for(Produto produto: produtos) {
-			valor += produto.getPreco();
-		}
-		return valor;
-	}
-	
-	public void setConcluido() {
-		this.concluido = true;
-	}
-	
-	public void adicionarProduto(Produto produto) {
-		this.produtos.add(produto);
-	}
-	
-	public List<Produto> getProdutos(){
-		return this.produtos;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public boolean isConcluido() {
-		return concluido;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
 }

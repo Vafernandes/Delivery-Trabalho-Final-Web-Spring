@@ -18,8 +18,10 @@ public class ProdutoService {
 	
 	public void cadastrar(Produto produto, MultipartFile imagem) {
 		
-		String caminho = "images/" + produto.getIdProduto() + ".png"; 
-		AulaFileUtils.salvarImagem(caminho,imagem);
+		if (!imagem.isEmpty()) {
+			String caminho = "images/" + produto.getIdProduto() + ".png"; 
+			AulaFileUtils.salvarImagem(caminho,imagem);
+		}
 		
 		produtoRepository.save(produto);
 	}
@@ -37,7 +39,7 @@ public class ProdutoService {
 		return produtoRepository.getOne(idProduto);
 	}
 	
-	public Produto obterPrato(Long id){
+	public Produto buscarPorId(Long id){
 		return produtoRepository.getOne(id);
 	}
 	

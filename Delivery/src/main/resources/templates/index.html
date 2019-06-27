@@ -39,9 +39,15 @@
                 <li  sec:authorize="hasRole('ROLE_ADMIN')"  class="nav-item col-sm">
                     <a class="btn btn-outline-light" href="/produto/listar">Listar Produto</a>
                 </li>
+                <li  sec:authorize="hasRole('ROLE_USER')"  class="nav-item col-sm">
+                    <a class="btn btn-outline-light" href="/pessoa/listarpedidos">Histórico de compras</a>
+                </li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item col-sm">
                     <a class="btn btn-outline-warning" href="/logout">Sair</a>
                 </li>
+                <li sec:authorize="hasRole('ROLE_USER')" class="nav-item col-sm">
+					<a class="btn btn-outline-light" href="/pedido/listar">Ver carrinho</a>
+				</li>
                 <li sec:authorize="hasRole('ROLE_USER')" class="nav-item col-sm">
                     <a class="btn btn-outline-warning" href="/logout">Sair</a>
                 </li>

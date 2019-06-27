@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,14 +7,14 @@ xmlns:th="http://www.thymeleaf.org">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="shortcut icon" href="/img/" type="image/x-icon">
-    <title>Home</title>
+    <title>Cardápio</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <div class="col-sm-4">
             <a class="navbar-brand" href="#"><img src="/img/bobsLOgo.png" width="100"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -40,48 +39,78 @@ xmlns:th="http://www.thymeleaf.org">
                 <li  sec:authorize="hasRole('ROLE_ADMIN')"  class="nav-item col-sm">
                     <a class="btn btn-outline-light" href="/produto/listar">Listar Produto</a>
                 </li>
+                <li  sec:authorize="hasRole('ROLE_USER')"  class="nav-item col-sm">
+                    <a class="btn btn-outline-light" href="/pessoa/listarpedidos">Histórico de compras</a>
+                </li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item col-sm">
                     <a class="btn btn-outline-warning" href="/logout">Sair</a>
                 </li>
                 <li sec:authorize="hasRole('ROLE_USER')" class="nav-item col-sm">
+					<a class="btn btn-outline-light" href="/pedido/listar">Ver carrinho</a>
+				</li>
+                <li sec:authorize="hasRole('ROLE_USER')" class="nav-item col-sm">
                     <a class="btn btn-outline-warning" href="/logout">Sair</a>
                 </li>
             </ul>
-            <a href="/pessoa/logar" class="btn btn-outline-danger navbar-btn">Entrar</a>
+            <a sec:authorize="!isAuthenticated()" href="/pessoa/logar" class="btn btn-outline-danger navbar-btn">Entrar</a>
         </div>
     </nav>
-    <div class="container" style="height: 23.5rem;">
 
-        
-        <center style="margin-top: 8%;">
-                <h1 style="margin-bottom: 5%;">Login</h1>
-            <form method="post" class="col-sm-7 ">
-                <div>
-                    <div class="col-sm-6">
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="Seu nome" name="username"> 
-                        </div>
-                        <div class="col">
-                            <input type="password" class="form-control" placeholder="Senha" name="password">
+
+		<div class="container my-5">
+		<center>
+			<h1>PRATOS DO DIA</h1>
+		</center>
+		<br>
+		<div class="row justify-content-center">
+			<div th:each="produto : ${listaDeProdutos}"
+				class="card col-sm6 m-2" style="width: 15rem;">
+				<img th:src="@{'/images/'+${produto.nomeProduto}+.png}"
+					class="card-img-top" height="200">
+				<div class="card-body">
+					<center>
+						<h5 th:text="${produto.nomeProduto}" class="card-title"></h5>
+						<p th:text="'R$ ' + ${produto.preco} " class="card-text"></p>
+						<a	sec:authorize="!hasRole('ROLE_ADMIN')" 
+						th:href="@{/produto/comprar/{idProduto} (idProduto = ${produto.idProduto})}" 
+						class="btn btn-success">Adicionar</a>
+					</center>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+        <!--  <div class="col-sm-12">
+
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="card col-sm6 m-2 d-flex align-items-center" style="width: 18rem; ">
+                        <img class="card-img-top" src="/img/sandubaWelcome.png" alt="Imagem de capa do card">
+                        <div class="card-body">
+                            <h5 class="card-title">Nome</h5>
+                            <p class="card-text">R$ 12.50</p>
+                            <a href="#" class="btn btn-success">Adicionar</a>
                         </div>
                     </div>
+
                 </div>
+            </div>
 
-                <div class="col-sm-6">
-                    <button type="submit" 
-                    class="btn btn-danger btn-lg " style="width: 15.5rem; margin-top: 10%;">
-                        Entrar
-                    </button>
-                </div>
+            
+        </div>-->
 
-            </form>
 
-        </center>
-
-    </div>
-
-    <div class="card text-center col" style="margin-top: 5%;">
-       
+    <div class="card text-center col">
+        <div class="card-header">
+            vinicius_alves@alu.ufc.br
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Título especial</h5>
+            <div>
+                <img src="/img/redes-sociais.png" width="150" class="img-fluid" alt="Imagem responsiva"> </div>
+        </div>
         <div class="card-footer text-muted">
             &copy; 2019 VAFCorporation
         </div>

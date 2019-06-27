@@ -59,7 +59,6 @@ public class Pessoa implements UserDetails{
 	private String endereco;
 	private String email;
 	
-	private String login;
 	private String senha;
 	
 	
@@ -106,13 +105,6 @@ public class Pessoa implements UserDetails{
 		this.email = email;
 	}
 	
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -133,7 +125,7 @@ public class Pessoa implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.login;
+		return this.email;
 	}
 	
 	@Override

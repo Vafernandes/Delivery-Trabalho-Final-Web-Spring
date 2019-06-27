@@ -16,7 +16,7 @@ xmlns:th="http://www.thymeleaf.org">
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <div class="col-sm-4">
             <a class="navbar-brand" href="#"><img src="/img/bobsLOgo.png" width="100"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -41,14 +41,20 @@ xmlns:th="http://www.thymeleaf.org">
                 <li  sec:authorize="hasRole('ROLE_ADMIN')"  class="nav-item col-sm">
                     <a class="btn btn-outline-light" href="/produto/listar">Listar Produto</a>
                 </li>
+                <li  sec:authorize="hasRole('ROLE_USER')"  class="nav-item col-sm">
+                    <a class="btn btn-outline-light" href="/pessoa/listarpedidos">Histórico de compras</a>
+                </li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item col-sm">
                     <a class="btn btn-outline-warning" href="/logout">Sair</a>
                 </li>
                 <li sec:authorize="hasRole('ROLE_USER')" class="nav-item col-sm">
+					<a class="btn btn-outline-light" href="/pedido/listar">Ver carrinho</a>
+				</li>
+                <li sec:authorize="hasRole('ROLE_USER')" class="nav-item col-sm">
                     <a class="btn btn-outline-warning" href="/logout">Sair</a>
                 </li>
             </ul>
-            <a href="/pessoa/logar" class="btn btn-outline-danger navbar-btn">Entrar</a>
+            <a sec:authorize="!isAuthenticated()" href="/pessoa/logar" class="btn btn-outline-danger navbar-btn">Entrar</a>
         </div>
     </nav>
     <div class="container" style="height: 23.5rem;">
@@ -83,31 +89,27 @@ xmlns:th="http://www.thymeleaf.org">
                       </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                           <label >Data-Nascimento</label>
                           <input type="text" class="form-control" placeholder="dd/mm/aaaa"
                         	th:field="*{dataNascimento}" id="data">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                           <label >Email</label>
                           <input type="text" class="form-control" 
                                 placeholder="email@gmail.com" name="email" th:field="*{email}">
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label >Senha</label>
+                          <input type="password" class="form-control" name="senha" th:field="*{senha}" placeholder="Senha">
                         </div>
                         <div class="form-group col-md-12">
                           <label >Endereço</label>
                           <input type="text" class="form-control" name="endereco" 
                             th:field="*{endereco}" placeholder="Rua nome, 366">
                         </div>
-                      </div>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label >Login</label>
-                        <input type="text" class="form-control" name="login" th:field="*{login}" placeholder="Nome de usuário">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label >Senha</label>
-                        <input type="password" class="form-control" name="senha" th:field="*{senha}" placeholder="Senha">
-                    </div>
+                     </div>
+                
                     
                     <button type="submit" 
                     class="btn btn-danger btn-block btn-lg col-md-12" style="width: 15.5rem; margin-top: 4%;">
