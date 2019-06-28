@@ -10,8 +10,7 @@ ou USER(Cliente usuário).
  
   1. Criar um banco no Postgres, depois alterar o nome do banco, o nome de usuário e senha no _application.properts_ que fica no caminho
       src/main/resource/application.properties
-  2. Para testar o projeto, após sua importação como "Existing Maven Projects", seŕá preciso clicar com o botão direito em "Run As"
-      Spring Boot App
+  2. Para testar o projeto, após sua importação como "Existing Maven Projects", seŕá preciso clicar com o botão direito em cima do projeto escolhendo a opção "Run As" e depois _Spring Boot App_
   3. No postgres, crie na tabela Role, os seguintes dados: ROLE_ADMIN e ROLE_USER, como o exemplo abaixo:
   
       ```sql
