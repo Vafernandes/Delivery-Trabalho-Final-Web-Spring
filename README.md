@@ -24,4 +24,5 @@ ou USER(Cliente usuário).
           ``sql
             INSERT INTO PESSOAS_ROLES VALUES(1,'ROLE_ADMIN')
           ``
+          
      O primeiro campo passado no _values_ é o código da pessoa, e o seguindo campo é a role(o papel dela no sistema)
