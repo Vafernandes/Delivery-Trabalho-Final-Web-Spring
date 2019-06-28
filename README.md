@@ -17,8 +17,9 @@ ou USER(Cliente usuário).
         INSERT INTO ROLE(papel) VALUES('ROLE_ADMIN'),('ROLE_USER);
       ```
   4. OBS: No sistema, todos que se cadastrarem serão usuário, então crie um usuário admin da seguinte forma:
-          1.1 Cadastre-se normalmente no sistema. No banco de dados, liste as pessoas cadastradas, veja qual o 
-          Código da pessoa, e então atribua o papel de AMIN à ela da seguinte forma:
+          
+      Cadastre-se normalmente no sistema. No banco de dados, liste as pessoas cadastradas, veja qual o 
+      Código da pessoa, e então atribua o papel de AMIN à ela da seguinte forma:
           
       ```sql
          INSERT INTO PESSOAS_ROLES VALUES(1,'ROLE_ADMIN')
